@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Tryout - Somerville Bag</title>
+</head>
+<body>
+    <img src="logo.png" alt="Banner" id="banner">
+	<!--Standard Nav Bar -->
+	<div class="nav">
+        <a href="index.html">Homepage</a>
+        <a href="roster.html">Roster</a>
+        <div class="dropdown">
+            <button class="dropbtn">About</button>
+            <div class="dropdown-content">
+                <a href="about.html">Pillars</a>
+                <a href="history.html">History</a>
+            </div>
+        </div>
+        <a href="contact.html">Contact Us</a>
+        <a class="current" href="tryout.html" onclick="return false">Tryout</a>
+    </div>
+	<center><h1>Tryout for Somerville BAG!</h1>
+    <form onsubmit = "return validate()">
+        <p>*First Name:
+        <input type="text" id="fname" name="fname"></input><br><br>
+        *Last Name:
+        <input type="text" id="lname" name="lname"></input><br><br>
+        Phone Number:
+        <input type="text" id="phone" name="phone"></input><br><br>
+        *Email:
+        <input type="text" id="email" name="email"></input><br><br>
+        Position:
+        <select id="position" name="position" size=1><br><br>
+            <option>Unsure</option>
+            <option>Handler</option>
+            <option>Cutter</option>
+            <option>Hybrid</option>
+        </select><br><br>
+        *Optimal Tryout Time:
+        <select id="day" name="day" size=1>
+            <option>None</option>
+            <option>Saturday Afternoon</option>
+            <option>Saturday Night</option>
+            <option>Sunday Afternoon</option>
+            <option>Sunday Night</option>
+        </select><br><br>
+        *Why do YOU want to tryout for the BAG? <br>
+        <textarea id="why_bag" rows="4" cols="50">-- Enter Response Here --</textarea><br><br>
+        Favorite Type of BAG:
+        <input type="text" id="bag" name="bag"></input><br><br>
+        <input type="submit" value="Submit"><br><br>
+        <i>*Required field</i>
+    </form>
+
+    <script language="javascript">
+        /*document.forms[0].onsubmit = function() {validate()};*/
+
+		function validate() {
+			var first_name = document.getElementsByName('fname')[0].value;
+			var is_first = first_name != "";
+			var last_name = document.getElementsByName('lname')[0].value;
+			var is_last = last_name != "";
+			var why_bag = document.getElementById("why_bag").value;
+			var email = document.getElementById("email").value;
+			var test_email = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			var is_email = test_email.test(email);
+
+			if (!is_first) {
+				alert("First Name Required");
+                return false;
+			} else if (!is_last) {
+				alert("Last Name Required!");
+                return false;
+			} else if (!is_email) {
+				alert("Invalid Email!");
+                return false;
+			} else if (why_bag == "" || why_bag == "-- Enter Response Here --") {
+				alert("Why Do You Want to Play BAG?");
+                return false;
+			} else {
+				alert("Thank you " + first_name + " for your interest in the BAG.\n A captain will be in contact with you about tryouts in 2-3 days.\n REDUCE REUSE RECYCLE, the BAG!");
+			}
+		}
+    </script>
+</body>
+</html>
